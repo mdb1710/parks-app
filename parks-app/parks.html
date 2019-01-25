@@ -7,22 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="parks.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="parks.js"></script>
+    
 </head>
 <body>
     <h2>USA National Park Search</h2>
     <div class='search'>
         <form class="js-search-controls">
             <label for='state-search'>State</label>
-            <input type='text' id='search-term'>
+            <input type='text' id='search-state' value="VA">
             <label for='city-search'>City</label>
-            <input type='text' id='search-city'>
+            <input type='text' id='search-city' value="Richmond">
             <label for='number-search'>Max Results</label>
-            <input type='number' id='search-result'>
+            <input type='number' id='search-result' placeholder="10">
+            <button type="submit" class="submit">Submit</button>
         </form>
-        <button type="submit" class="submit">Submit</button>
+        
     </div>
     <div class='results'></div>
-    
+    <script src="parks.js"></script>
 </body>
 </html>
