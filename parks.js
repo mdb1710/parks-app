@@ -15,7 +15,8 @@ const params = {
 }
 
 function apiCall (){
-  
+  fetch(searchUrl)
+    .then(response) => re
 }
 
 
@@ -32,12 +33,5 @@ function generateHTML() {
 }
 
 function handleSubmit (){
- $('.submit').on('click', '.results', function(event){
-    event.preventDefault();
-
- });
-
- }
-
-
  
+}
