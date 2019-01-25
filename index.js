@@ -1,7 +1,9 @@
 'use strict';
 
+//://dog.ceo/api/breed/hound/images/random
+
 function getDogImage(num) {
-  fetch(`https://dog.ceo/api/breeds/image/random/${num}`)
+  fetch(`https://dog.ceo/api/breed/${num}/images/random`)
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
@@ -14,7 +16,7 @@ function displayResults(responseJson) {
   //replace the existing image with the new one
   // $('.results-img').empty();
 
-  let resultHTML = createHTMLString(responseJson.message);
+  let resultHTML = generateResultHTML(responseJson.message);
 // convert each item in our responseJSON.message into our HTML template
 // join the message array together into completed HTML
 // insert html onto page
@@ -31,9 +33,9 @@ function displayResults(responseJson) {
   $('.results').removeClass('hidden');
 }
 
-function createHTMLString (array) {
+/*function createHTMLString (array) {
   return array.map((item, index) => generateResultHTML(item)).join(' ');
-}
+}*/
 
 function generateResultHTML (item) {
   // return image src item at itemIndex
@@ -45,7 +47,7 @@ function generateResultHTML (item) {
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
-    let numDogs = $('.how-many-dogs').val();
+    let numDogs = $('.which-breed').val();
     getDogImage(numDogs);
   });
 }
