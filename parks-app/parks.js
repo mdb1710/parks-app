@@ -12,16 +12,20 @@ const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
 function apiCall (stateCode, q, limit=10) {
   const params = {
-    key: APIKEY,
+    'api_key': APIKEY,
     q,
     stateCode,
-    limit
+    limit,
+    fields: 'addresses'
   };
 
-  let pKeys = Object.keys(params);
+  // let pKeys = Object.keys(params);
 
-  let parksAPIURL = `${searchURL}?api_key=${params.key}&${pKeys[1]}=${params.q}&${pKeys[2]}=${params.stateCode}&${pKeys[3]}=${params.limit}`;
-  //   console.log(parksAPIURL);
+  // let parksAPIURL = `${searchURL}?api_key=${params.key}&${pKeys[1]}=${params.q}&${pKeys[2]}=${params.stateCode}&${pKeys[3]}=${params.limit}&${pKeys[4]}=${params.fields}`;
+  
+  let parksAPIURL = generateURI(params);
+  
+    console.log(parksAPIURL);
   fetch(parksAPIURL)
     .then(response => {
       if (response.ok) {
@@ -41,6 +45,24 @@ function apiCall (stateCode, q, limit=10) {
   console.log('fetch ran');
 }
 
+function generateURI (params) {
+  let parameters = generateParameterString(params);
+  let parksAPIURI = `${searchURL}?${parameters}`;
+  return parksAPIURI;
+}
+
+function generateParameterString (params) {
+  let pKeys = Object.keys(params);
+  let stateCodes = formatStateCodes(params.stateCode);
+  return pKeys.map((key) => (key !== 'stateCode')?`${key}=${params[key]}`: `${stateCodes}`).join('&');
+}
+
+function formatStateCodes(states) {
+  return states.split(', ').map(state => `stateCode=${state}`).join('&');
+}
+
+// let parksAPIURL = `${searchURL}?${pKeys[0]}=${params.key}&${pKeys[1]}=${params.q}&${pKeys[2]}=${params.stateCode}&${pKeys[3]}=${params.limit}&${pKeys[4]}=${params.fields}`;
+
 function displayResults (array){
   console.log(array);
   
@@ -50,7 +72,7 @@ function displayResults (array){
 
 
 function generateString(array) {
-  return array.data.map((item, index) => generateHTML(item)).join(' ');
+  return array.data.map((item) => generateHTML(item)).join(' ');
 
 // FULL NAME, DESCRIPTION, WEBSITE URL
   //FULL NAME
@@ -64,10 +86,15 @@ function generateString(array) {
 function generateHTML (item) {
   return `
     <ul>
-        <li>${item.fullName}</li>
+        <li><h2>${item.fullName}</h2></li>
+        <li>${item.addresses[0].line1}</li>
+        <li>${item.addresses[0].line3}</li>
+        <li>${item.addresses[0].city}, ${item.addresses[0].stateCode} ${item.addresses[0].postalCode}</li>
+        <br>
         <li>${item.description}</li>
         <li>${item.url}</li>
     </ul>
+    <br>
     `;
 }
 
@@ -83,6 +110,9 @@ function handleSubmit (){
   });
   console.log('ready to handle submits');
 }
+
+//prepares the state text field input for the URI
+
 
 function handleParksSearch () {
   handleSubmit();
