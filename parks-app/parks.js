@@ -25,7 +25,7 @@ function apiCall (stateCode, q, limit=10) {
   
   let parksAPIURL = generateURI(params);
   
-    console.log(parksAPIURL);
+  console.log(parksAPIURL);
   fetch(parksAPIURL)
     .then(response => {
       if (response.ok) {
@@ -86,13 +86,13 @@ function generateString(array) {
 function generateHTML (item) {
   return `
     <ul>
-        <li><h2>${item.fullName}</h2></li>
-        <li>${item.addresses[0].line1}</li>
-        <li>${item.addresses[0].line3}</li>
-        <li>${item.addresses[0].city}, ${item.addresses[0].stateCode} ${item.addresses[0].postalCode}</li>
-        <br>
-        <li>${item.description}</li>
-        <li>${item.url}</li>
+      <li><h2>${item.fullName}</h2></li>
+      <li>${item.addresses[0].line1}</li>
+      <li>${item.addresses[0].line3}</li>
+      <li>${item.addresses[0].city}, ${item.addresses[0].stateCode} ${item.addresses[0].postalCode}</li>
+      <br>
+      <li>${item.description}</li>
+      <li>${item.url}</li>
     </ul>
     <br>
     `;
@@ -119,6 +119,3 @@ function handleParksSearch () {
 }
 
 handleParksSearch();
-
-
- 
