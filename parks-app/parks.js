@@ -92,7 +92,7 @@ function generateHTML (item) {
       <li>${item.addresses[0].city}, ${item.addresses[0].stateCode} ${item.addresses[0].postalCode}</li>
       <br>
       <li>${item.description}</li>
-      <li>${item.url}</li>
+      <li><a href=${item.url}>${item.url}</a></li>
     </ul>
     <br>
     `;
