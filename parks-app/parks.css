@@ -3,5 +3,28 @@ ul {
 }
 
 input {
-  width: 100px;
+  /* width: 100px; */
+  padding: 10px 15px;
+  font-size: 20px;
+  margin: 10px;
 }
+
+/* 
+label {
+  display: none;
+}
+
+form.js-search-controls {
+  text-align: center;
+}
+
+button.submit {
+  font-size: 20px;
+  padding: 10px 25px;
+  border: 0px;
+  margin: 20px auto;
+  background-color: forestgreen;
+  color: yellow;
+  border-radius: 5px;
+  display: block;
+} */

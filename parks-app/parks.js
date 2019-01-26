@@ -54,6 +54,7 @@ function generateURI (params) {
 function generateParameterString (params) {
   let pKeys = Object.keys(params);
   let stateCodes = formatStateCodes(params.stateCode);
+  // comment
   return pKeys.map((key) => (key !== 'stateCode')?`${key}=${params[key]}`: `${stateCodes}`).join('&');
 }
 
