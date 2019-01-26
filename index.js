@@ -1,5 +1,5 @@
 'use strict';
-
+/* global $ */
 //://dog.ceo/api/breed/hound/images/random
 
 function getDogImage(num) {
@@ -7,7 +7,7 @@ function getDogImage(num) {
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
-    .catch(error => alert('Something went wrong. Try again later.'));
+    .catch(() => alert('Something went wrong. Try again later.',));
 }
 
 
@@ -17,9 +17,9 @@ function displayResults(responseJson) {
   // $('.results-img').empty();
 
   let resultHTML = generateResultHTML(responseJson.message);
-// convert each item in our responseJSON.message into our HTML template
-// join the message array together into completed HTML
-// insert html onto page
+  // convert each item in our responseJSON.message into our HTML template
+  // join the message array together into completed HTML
+  // insert html onto page
 
   $('.js-results-display').html(resultHTML);
 
