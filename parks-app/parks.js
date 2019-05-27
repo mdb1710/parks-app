@@ -10,17 +10,18 @@ const APIKEY = 'AAiy1c1UiI3L0f6vLtwCVz0U37nstlyd7aJq9XQl';
 
 const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
-function apiCall (stateCode, q, limit=10) {
+function apiCall (stateCode, stateCode2, q, limit=10) {
   const params = {
     key: APIKEY,
     q,
     stateCode,
+    stateCode2,
     limit
   };
 
   let pKeys = Object.keys(params);
 
-  let parksAPIURL = `${searchURL}?api_key=${params.key}&${pKeys[1]}=${params.q}&${pKeys[2]}=${params.stateCode}&${pKeys[3]}=${params.limit}`;
+  let parksAPIURL = `${searchURL}?api_key=${params.key}&${pKeys[1]}=${params.q}&${pKeys[2]}=${params.stateCode}&${params.stateCode2}&${pKeys[3]}=${params.limit}`;
   //   console.log(parksAPIURL);
   fetch(parksAPIURL)
     .then(response => {
@@ -77,9 +78,10 @@ function handleSubmit (){
     event.preventDefault();
     console.log('submit detected');
     const stateCode = $('#search-state').val();
+    const stateCode2 = $('#search-state-2').val();
     const query = $('#search-city').val();
     const limit = $('#search-result').val();
-    apiCall(stateCode, query, limit);
+    apiCall(stateCode, stateCode2, query, limit);
   });
   console.log('ready to handle submits');
 }
